@@ -20,14 +20,13 @@ public class CalculatorFromFile {
         System.out.println("\nCalculate result = " + calculate(readFile(args[0])));
     }
 
-    private static int calculate(List<String> inputString) {
+    public static int calculate(List<String> inputString) {
 
         Integer calculateResult = 0;
 
         if (inputString.isEmpty() || inputString.get(0).equals("")) {
             System.out.println("Input string is empty.");
         } else {
-            //Integer applyValue = Integer.parseInt(inputString.get(inputString.size() - 1).split(" ")[1]);
 
             calculateResult = Integer.parseInt(inputString.get(inputString.size() - 1).split(" ")[1]);
 
