@@ -1,5 +1,6 @@
 import mathematicalOperations.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,8 +17,20 @@ import static java.nio.file.Files.readAllLines;
 public class CalculatorFromFile {
 
     public static void main(String[] args) {
-        System.out.println("Operations from file to calculate:"); printInputFile(args[0]);
-        System.out.println("\nCalculate result = " + calculate(readFile(args[0])));
+        runCalculate(args);
+    }
+
+    private static void runCalculate(String[] args) {
+        if (args.length <= 0)
+            System.out.println("Please enter the path of the input file, e.g.:\njava CalculatorFromFile inputFile.txt");
+        else {
+            List<String> listFromFile = readFile(args[0]);
+            if (!listFromFile.isEmpty()) {
+                System.out.println("Operations from file to calculate:");
+                listFromFile.forEach(System.out::println);
+                System.out.println("\nCalculate RESULT = " + calculate(listFromFile));
+            }
+        }
     }
 
     public static int calculate(List<String> inputString) {
@@ -46,7 +59,7 @@ public class CalculatorFromFile {
     private static MathematicalOperation whatIsOperation(String line) {
         MathematicalOperation mathematicalOperation;
         String[] splitLine = line.split(" ");
-        String operation = splitLine[0];
+        String operation = splitLine[0].toLowerCase();
         Integer digit = Integer.parseInt(splitLine[1]);
 
         switch (operation) {
@@ -67,24 +80,14 @@ public class CalculatorFromFile {
         return mathematicalOperation;
     }
 
-    private static void printInputFile(String pathToInputFile) {
-        List<String> stringFromFile = readFile(pathToInputFile);
-        stringFromFile.forEach(System.out::println);
-    }
-
     private static List<String> readFile(String pathToInputFile) {
 
-        Path path;
+        Path path = Paths.get(pathToInputFile);
 
-        if (pathToInputFile.isEmpty()) {
-            path = Paths.get("C:\\Users\\Grzesiek\\IdeaProjects\\CalculatorFromFile\\src\\main\\java\\inputFile.txt");
-        } else {
-            path = Paths.get(pathToInputFile);
-        }
         try {
             return readAllLines(path);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error!!!\nSorry but file " + pathToInputFile + " not found or there was another exception.\nPlease another path/file!");
         }
         return Collections.emptyList();
     }
