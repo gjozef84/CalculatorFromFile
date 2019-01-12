@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -30,18 +29,17 @@ public class CalculatorFromFileTest {
     @Test
     public void shouldReturn2WhenStringContainsTwoLinesWithAdd() {
         List<String> stringInput = new ArrayList<>();
-        stringInput.add("add 1");
+        stringInput.add("Add 1");
         stringInput.add("apply 1");
         assertThat(CalculatorFromFile.calculate(stringInput), is(2));
     }
 
     @Test
-    public void shouldReturn36WhenStringContainsTreeLinesWithAddAndMultiply() {
+    public void shouldReturn5WhenStringContainsTwoLinesWithSubstract() {
         List<String> stringInput = new ArrayList<>();
-        stringInput.add("add 2");
-        stringInput.add("multiply 3");
+        stringInput.add("Subtract 5");
         stringInput.add("apply 10");
-        assertThat(CalculatorFromFile.calculate(stringInput), is(36));
+        assertThat(CalculatorFromFile.calculate(stringInput), is(5));
     }
 
     @Test

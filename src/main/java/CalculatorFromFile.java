@@ -1,6 +1,5 @@
 import mathematicalOperations.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -69,8 +68,11 @@ public class CalculatorFromFile {
             case "multiply":
                 mathematicalOperation = new MultiplyOperation(digit);
                 break;
-            case "substract":
-                mathematicalOperation = new SubstractOperation(digit);
+            case "divide":
+                mathematicalOperation = new DivideOperation(digit);
+                break;
+            case "subtract":
+                mathematicalOperation = new SubtractOperation(digit);
                 break;
             default:
                 mathematicalOperation = new ApplyOperation(digit);
@@ -87,7 +89,7 @@ public class CalculatorFromFile {
         try {
             return readAllLines(path);
         } catch (IOException e) {
-            System.out.println("Error!!!\nSorry but file " + pathToInputFile + " not found or there was another exception.\nPlease another path/file!");
+            System.out.println("Error!!!\nSorry but file " + pathToInputFile + " not found or there was another exception.\nPlease try again with another path/file!");
         }
         return Collections.emptyList();
     }

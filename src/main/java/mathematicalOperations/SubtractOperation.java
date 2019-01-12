@@ -8,13 +8,13 @@ import mathematicalOperations.MathematicalOperation;
  */
 
 @Data
-public class SubstractOperation implements MathematicalOperation {
+public class SubtractOperation implements MathematicalOperation {
 
-    private String name = "substract";
+    private String name = "subtract";
     private String symbol = "-";
     private Integer number;
 
-    public SubstractOperation(Integer number) {
+    public SubtractOperation(Integer number) {
         this.number = number;
     }
 
